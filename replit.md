@@ -4,6 +4,15 @@
 
 QuickResizer is a browser-based image resizing and processing application built with React, TypeScript, and Express. The application allows users to upload, resize, crop, and optimize images with various presets and custom settings. It features both basic and advanced modes for different user needs.
 
+## Recent Changes
+
+**January 2025**
+- Implemented preset redirection from Links page to Advanced tab with automatic parameter application
+- Added domain-based file naming for processed images (filename includes current domain)
+- Updated feedback and report issue form URLs to custom Google Forms
+- Fixed React key warnings for better performance
+- Created pixel-perfect replica of QuickResizer.com functionality
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.

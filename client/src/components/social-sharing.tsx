@@ -10,8 +10,8 @@ export function SocialSharing() {
   };
 
   const feedbackUrls = {
-    feedback: "https://forms.gle/GiBaqyDxiq45AERW8",
-    report: "https://forms.gle/ZbYoyFJjSQdvtGKy9"
+    feedback: "https://forms.gle/6Qo1UUEPu2kAwmw9A",
+    report: "https://forms.gle/HBM6J4XUejLJ7paZA"
   };
 
   return (

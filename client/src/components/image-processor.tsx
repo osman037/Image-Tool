@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { UploadedImage, ProcessedImage, ProcessingSettings } from '@/types/image';
 import { UploadArea } from './upload-area';
 import { ImagePreview } from './image-preview';
@@ -14,9 +14,15 @@ import { Download, FileImage } from 'lucide-react';
 
 interface ImageProcessorProps {
   mode: 'basic' | 'advanced';
+  presetData?: {
+    width: number;
+    height: number;
+    unit: string;
+    preset: string;
+  } | null;
 }
 
-export function ImageProcessorComponent({ mode }: ImageProcessorProps) {
+export function ImageProcessorComponent({ mode, presetData }: ImageProcessorProps) {
   const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
   const [processedImages, setProcessedImages] = useState<ProcessedImage[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -37,6 +43,15 @@ export function ImageProcessorComponent({ mode }: ImageProcessorProps) {
   const [targetSize, setTargetSize] = useState(0);
   const [targetSizeUnit, setTargetSizeUnit] = useState('kb');
   const [dpi, setDpi] = useState(72);
+
+  // Apply preset data when it changes
+  useEffect(() => {
+    if (presetData && mode === 'advanced') {
+      setAdvancedWidth(presetData.width);
+      setAdvancedHeight(presetData.height);
+      setUnit(presetData.unit);
+    }
+  }, [presetData, mode]);
 
   const handleImagesUploaded = (images: UploadedImage[]) => {
     setUploadedImages(images);

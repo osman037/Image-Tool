@@ -185,7 +185,8 @@ export class ImageProcessor {
 
   private static generateFileName(originalName: string, format: string): string {
     const nameWithoutExt = originalName.replace(/\.[^/.]+$/, '');
-    return `${nameWithoutExt}_resized.${format.toLowerCase()}`;
+    const domain = window.location.hostname;
+    return `${nameWithoutExt}_resized_by_${domain}.${format.toLowerCase()}`;
   }
 
   static async createZipDownload(images: ProcessedImage[]): Promise<string> {

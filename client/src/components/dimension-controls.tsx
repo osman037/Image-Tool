@@ -75,7 +75,7 @@ export function DimensionControls({
                   
                   return (
                     <button
-                      key={presetKey}
+                      key={`${preset.name}-${preset.width}x${preset.height}-${preset.unit}`}
                       onClick={() => handlePresetClick(preset)}
                       className={`advanced-preset-btn w-full text-left px-3 py-2 text-sm rounded transition-colors ${
                         isSelected ? 'bg-primary-50 text-primary-700' : 'hover:bg-gray-50'

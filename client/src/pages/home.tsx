@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'wouter';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ImageProcessorComponent } from '@/components/image-processor';
 import { SocialSharing } from '@/components/social-sharing';
@@ -6,6 +7,31 @@ import { Layers, Expand, Gem, FileImage, Crop, Printer } from 'lucide-react';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('basic');
+  const [location] = useLocation();
+  const [presetData, setPresetData] = useState<{
+    width: number;
+    height: number;
+    unit: string;
+    preset: string;
+  } | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.split('?')[1]);
+    const preset = params.get('preset');
+    const width = params.get('width');
+    const height = params.get('height');
+    const unit = params.get('unit');
+
+    if (preset && width && height && unit) {
+      setPresetData({
+        width: parseInt(width),
+        height: parseInt(height),
+        unit,
+        preset
+      });
+      setActiveTab('advanced');
+    }
+  }, [location]);
 
   const features = [
     {
@@ -129,7 +155,7 @@ export default function Home() {
             </TabsContent>
             
             <TabsContent value="advanced">
-              <ImageProcessorComponent mode="advanced" />
+              <ImageProcessorComponent mode="advanced" presetData={presetData} />
             </TabsContent>
             
             <TabsContent value="links">

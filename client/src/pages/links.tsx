@@ -18,10 +18,6 @@ export default function Links() {
   const presets = getPresetsByUnit(selectedUnit);
 
   const getPresetUrl = (preset: any) => {
-    const slug = preset.name.toLowerCase()
-      .replace(/[()]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/:/g, 'by');
     return `/?preset=${encodeURIComponent(preset.name)}&width=${preset.width}&height=${preset.height}&unit=${preset.unit}`;
   };
 
